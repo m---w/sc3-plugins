@@ -432,7 +432,8 @@ void Gammatone_next(Gammatone *unit, int inNumSamples) {
 	int i,j; 
 	
 	float *input = IN(0); 
-	float *output = OUT(0);
+	float *outputreal = OUT(0);
+	float *outputimag = OUT(1);
 	
 	double newreal, newimag; 
 	
@@ -456,9 +457,11 @@ void Gammatone_next(Gammatone *unit, int inNumSamples) {
 			oldimag[j]= newimag; //zapgremlins(newimag); 
 		}
 		
-		output[i]= newreal*normalisation; 
+		outputreal[i]= newreal*normalisation; 
 		
 		//imaginary output too could be useful
+
+		outputimag[i]= newimag*normalisation; 
 		
 	}
 	
